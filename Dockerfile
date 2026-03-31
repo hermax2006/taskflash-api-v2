@@ -18,10 +18,9 @@ RUN chown -R www-data:www-data storage bootstrap/cache \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 8000
 
-CMD php artisan config:clear && \
-    php artisan route:clear && \
-    php artisan migrate --force && \
-    php-fpm -D && \
-    nginx -g "daemon off;"
+CMD ["/entrypoint.sh"]
