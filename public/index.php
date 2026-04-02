@@ -2,6 +2,9 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+if (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
+    $_SERVER['REQUEST_METHOD'] = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']);
+}
 
 define('LARAVEL_START', microtime(true));
 
