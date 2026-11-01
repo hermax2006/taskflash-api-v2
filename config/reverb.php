@@ -40,16 +40,19 @@ return [
 
         'apps' => [
             [
-                'key' => 'wzuqhjfirmnfyqz4cqdm',
-                'secret' => 'bspoh5xu9ghbhyswp8jp',
-                'app_id' => '935424',
+                'key' => env('REVERB_APP_KEY'),
+                'secret' => env('REVERB_APP_SECRET'),
+                'app_id' => env('REVERB_APP_ID'),
                 'options' => [
-                    'host' => 'localhost',
-                    'port' => 8080,
-                    'scheme' => 'http',
-                    'useTLS' => false,
+                    'host' => env('REVERB_HOST', '127.0.0.1'),
+                    'port' => env('REVERB_PORT', 8080),
+                    'scheme' => env('REVERB_SCHEME', 'http'),
+                    'useTLS' => env('REVERB_SCHEME', 'http') === 'https',
                 ],
-                'allowed_origins' => ['*'],
+                'allowed_origins' => array_values(array_filter(array_map(
+                    'trim',
+                    explode(',', (string) env('REVERB_ALLOWED_ORIGINS', '*'))
+                ))),
                 'ping_interval' => 60,
                 'activity_timeout' => 30,
                 'max_connections' => null,
