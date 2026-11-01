@@ -2,6 +2,7 @@
 set -e
 
 export PORT="${PORT:-8000}"
+export HOME=/tmp
 
 if [ -z "$APP_KEY" ]; then
     echo "[entrypoint] ERROR: APP_KEY is not set. Add it to your Koyeb environment variables." >&2
