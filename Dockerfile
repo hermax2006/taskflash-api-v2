@@ -13,6 +13,8 @@ WORKDIR /var/www/html
 
 COPY . .
 
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 RUN mkdir -p \
