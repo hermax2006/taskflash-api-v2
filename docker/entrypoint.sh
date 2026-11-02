@@ -33,9 +33,8 @@ until php artisan migrate --force; do
     sleep 3
 done
 
-echo "[entrypoint] Caching configuration and routes..."
-php artisan config:cache
-php artisan route:cache
+echo "[entrypoint] Caching configuration, routes and views..."
+php artisan optimize
 
 echo "[entrypoint] Starting supervisor (php-fpm, reverb, nginx)..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf

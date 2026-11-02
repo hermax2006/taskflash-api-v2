@@ -14,6 +14,7 @@ WORKDIR /var/www/html
 COPY . .
 
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY docker/php.ini /usr/local/etc/php/conf.d/99-taskflash.ini
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
